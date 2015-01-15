@@ -27,6 +27,18 @@ ADD chef/active-cookbook/opencoral/recipes/source.rb                 /chef/vendo
 RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::source'
 
+### Install DB
+ADD chef/active-cookbook/opencoral/files/default                                   /chef/vendor/cookbooks/opencoral/files/default
+ADD chef/active-cookbook/opencoral/files/default/pg_hba.conf                       /chef/vendor/cookbooks/opencoral/files/default/pg_hba.conf
+ADD chef/active-cookbook/opencoral/files/default/Pg83-implicit-casts.sql_id22      /chef/vendor/cookbooks/opencoral/files/default/Pg83-implicit-casts.sql_id22
+ADD chef/active-cookbook/opencoral/files/default/postgresql.key                    /chef/vendor/cookbooks/opencoral/files/default/postgresql.key
+ADD chef/active-cookbook/opencoral/files/default/postgresql.pem                    /chef/vendor/cookbooks/opencoral/files/default/postgresql.pem
+ADD chef/base/vendor/cookbooks/postgresql                                         /chef/vendor/cookbooks/postgresql
+
+ADD chef/active-cookbook/opencoral/recipes/database.rb                 /chef/vendor/cookbooks/opencoral/recipes/database.rb
+RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::database'
+
 ### Build Source
 # ADD chef/active-cookbook/opencoral/recipes/build_source.rb                 /chef/vendor/cookbooks/opencoral/recipes/build_source.rb
 # RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
