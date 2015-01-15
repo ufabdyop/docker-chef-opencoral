@@ -34,10 +34,14 @@ ADD chef/active-cookbook/opencoral/files/default/Pg83-implicit-casts.sql_id22   
 ADD chef/active-cookbook/opencoral/files/default/postgresql.key                    /chef/vendor/cookbooks/opencoral/files/default/postgresql.key
 ADD chef/active-cookbook/opencoral/files/default/postgresql.pem                    /chef/vendor/cookbooks/opencoral/files/default/postgresql.pem
 ADD chef/base/vendor/cookbooks/postgresql                                         /chef/vendor/cookbooks/postgresql
-
 ADD chef/active-cookbook/opencoral/recipes/database.rb                 /chef/vendor/cookbooks/opencoral/recipes/database.rb
 RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::database'
+
+### Configure DB
+ADD chef/active-cookbook/opencoral/recipes/database-config.rb                 /chef/vendor/cookbooks/opencoral/recipes/database-config.rb
+RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::database-config'
 
 ### Build Source
 # ADD chef/active-cookbook/opencoral/recipes/build_source.rb                 /chef/vendor/cookbooks/opencoral/recipes/build_source.rb
