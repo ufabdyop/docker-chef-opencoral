@@ -1,0 +1,9 @@
+site 'http://community.opscode.com/api/v1'
+
+cookbook "apt",
+    :git => "https://github.com/opscode-cookbooks/apt",
+    :ref => 'v2.4.0'
+cookbook "git",
+    :git => "https://github.com/jssjr/git"
+cookbook "opencoral",
+    :path => "vendor/cookbooks/opencoral"

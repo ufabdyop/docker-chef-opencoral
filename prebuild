@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#first check if secrets file exists
+if [ ! -f /chef/secret/encrypted_data_bag_secret ]
+then 
+	echo "***************************************************************************"; 
+	echo
+	echo "No encryption key found. Please install the correct one."; 
+	echo "See: https://www.nanofab.utah.edu/sv/index.php?dec=1&cat=Chef&t1=Docker%20Secret";
+	echo "Or run: ./fetch-secret.sh";
+	echo
+	echo "***************************************************************************"; 
+	exit 1
+fi
+
+

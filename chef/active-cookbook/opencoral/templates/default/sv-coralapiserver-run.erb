@@ -1,0 +1,10 @@
+exec 2>&1
+# Change to the working dir.
+cd <%= @coralapiserver_install_dir%>
+
+# Package the project.
+mvn package
+
+# Start the service.
+exec chpst -ucoral java -jar <%= @coralapiserver_install_dir%>/target/coralapiserver-current.jar server <%= @coralapiserver_install_dir%>/coral-api.yml
+

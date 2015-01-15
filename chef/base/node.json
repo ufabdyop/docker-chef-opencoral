@@ -1,0 +1,10 @@
+{
+  "run_list": [
+    "recipe[opencoral::default]",
+    "recipe[opencoral::ssh]",
+    "recipe[opencoral::source]",
+    "recipe[opencoral::build_source]",
+    "recipe[opencoral::deploy_source]",
+    "recipe[opencoral::config_apiserver]"
+  ]
+}
