@@ -40,6 +40,7 @@ RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::database'
 
 ### Configure DB
 ADD chef/active-cookbook/opencoral/recipes/database-config.rb                 /chef/vendor/cookbooks/opencoral/recipes/database-config.rb
+ADD chef/active-cookbook/opencoral/templates/default/lab_db.sql.erb           /chef/vendor/cookbooks/opencoral/templates/default/lab_db.sql.erb
 RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::database-config'
 
