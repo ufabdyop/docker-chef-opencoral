@@ -44,6 +44,11 @@ ADD chef/active-cookbook/opencoral/templates/default/lab_db.sql.erb           /c
 RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::database-config'
 
+### Configure SSH
+ADD  chef/active-cookbook/opencoral/recipes/ssh.rb                   /chef/vendor/cookbooks/opencoral/recipes/ssh.rb
+RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::ssh'
+
 ### Build Source
 # ADD chef/active-cookbook/opencoral/recipes/build_source.rb                 /chef/vendor/cookbooks/opencoral/recipes/build_source.rb
 # RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
@@ -53,11 +58,6 @@ RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::database-config'
 # ADD chef/active-cookbook/opencoral/recipes/deploy_source.rb                 /chef/vendor/cookbooks/opencoral/recipes/deploy_source.rb
 # RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 # RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::deploy_source'
-# 
-# ### Configure SSH
-# ADD  chef/active-cookbook/opencoral/recipes/ssh.rb                   /chef/vendor/cookbooks/opencoral/recipes/ssh.rb
-# RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
-# RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::ssh'
 # 
 # ### Configure DNSMASQ
 # ADD  chef/active-cookbook/opencoral/recipes/dnsmasq.rb                   /chef/vendor/cookbooks/opencoral/recipes/dnsmasq.rb
