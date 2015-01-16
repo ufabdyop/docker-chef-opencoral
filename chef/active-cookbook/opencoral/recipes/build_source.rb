@@ -1,14 +1,27 @@
-execute "Use dev DB config" do
-  cwd "/opencoral/config"
-  command "cp .jspw-dev.properties .jspw.properties"
+cookbook_file "/home/coral/opencoral/ext/proguard/proguard-5.1.jar" do
+  source "proguard-5.1.jar"
+  owner "coral"
+  group "opencoral"
 end
 
-execute "Use dev config" do
-  cwd "/opencoral/config"
-  command "cp nanofab.utah.edu-dev.properties nanofab.utah.edu-prod.properties"
+cookbook_file "/home/coral/opencoral/ext/proguard/proguardgui-5.1.jar" do
+  source "proguardgui-5.1.jar"
+  owner "coral"
+  group "opencoral"
 end
 
-execute "Build java files" do
-  cwd "/opencoral"
-  command "source ~/.bashrc; /usr/local/ant-1.8.2/bin/ant build"
+cookbook_file "/home/coral/opencoral/ext/proguard/retrace-5.1.jar" do
+  source "retrace-5.1.jar"
+  owner "coral"
+  group "opencoral"
+end
+
+execute "set new version of proguard" do
+  command "perl -i -pe 's/4.4/5.1/' /home/coral/opencoral/config/.hidden.properties"
+end
+
+bash "Build java files" do
+  user "coral"
+  cwd "/home/coral/opencoral"
+  code "/usr/local/ant-1.8.2/bin/ant build"
 end

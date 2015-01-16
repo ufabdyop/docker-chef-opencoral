@@ -1,3 +1,2 @@
-address="/coral.nanofab.utah.edu/127.0.0.1"
-address="/list.eng.utah.edu/127.0.0.1"
-address="/sympa.eng.utah.edu/127.0.0.1"
+address="/coraldb/127.0.0.1"
+address="/coralserver.local/127.0.0.1"

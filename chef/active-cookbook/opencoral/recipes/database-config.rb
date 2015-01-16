@@ -61,3 +61,25 @@ end
 #cleanup
 file ("/home/coral/.pgpass") { action :delete }
 file ("/home/coral/opencoral/src/sql/Postgres/initialSetup/lab_db.sql") { action :delete }
+
+#create config files
+file "/home/coral/opencoral/config/.dbpw.properties" do
+    owner 'coral'
+    group 'opencoral'
+    mode '0600'
+    content "coral.db.password=#{dbapass}"
+end
+
+file "/home/coral/opencoral/config/.defaultInstance.properties" do
+    owner 'coral'
+    group 'opencoral'
+    mode '0664'
+    content "instance=prod"
+end
+
+file "/home/coral/opencoral/config/.defaultSite.properties" do
+    owner 'coral'
+    group 'opencoral'
+    mode '0664'
+    content "site=site1"
+end

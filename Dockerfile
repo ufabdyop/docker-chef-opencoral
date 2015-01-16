@@ -49,21 +49,41 @@ ADD  chef/active-cookbook/opencoral/recipes/ssh.rb                   /chef/vendo
 RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::ssh'
 
+### Ant Configure Step
+ADD chef/active-cookbook/opencoral/recipes/ant-configure.rb                                /chef/vendor/cookbooks/opencoral/recipes/ant-configure.rb
+ADD chef/active-cookbook/opencoral/templates/default/coral-config.properties.erb           /chef/vendor/cookbooks/opencoral/templates/default/coral-config.properties.erb
+RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::ant-configure'
+
+### Create Keystore
+ADD chef/active-cookbook/opencoral/recipes/keystore.rb                 /chef/vendor/cookbooks/opencoral/recipes/keystore.rb
+RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::keystore'
+
 ### Build Source
-# ADD chef/active-cookbook/opencoral/recipes/build_source.rb                 /chef/vendor/cookbooks/opencoral/recipes/build_source.rb
-# RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
-# RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::build_source'
-# 
+ADD chef/active-cookbook/opencoral/files/default/proguard-5.1.jar                    /chef/vendor/cookbooks/opencoral/files/default/proguard-5.1.jar
+ADD chef/active-cookbook/opencoral/files/default/proguardgui-5.1.jar                    /chef/vendor/cookbooks/opencoral/files/default/proguardgui-5.1.jar
+ADD chef/active-cookbook/opencoral/files/default/retrace-5.1.jar                    /chef/vendor/cookbooks/opencoral/files/default/retrace-5.1.jar
+ADD chef/active-cookbook/opencoral/recipes/build_source.rb                 /chef/vendor/cookbooks/opencoral/recipes/build_source.rb
+RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::build_source'
+
+### Configure DNSMASQ
+ADD  chef/active-cookbook/opencoral/recipes/dnsmasq.rb                   /chef/vendor/cookbooks/opencoral/recipes/dnsmasq.rb
+ADD  chef/active-cookbook/opencoral/files/default/01hosts                   /chef/vendor/cookbooks/opencoral/files/default/01hosts
+RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::dnsmasq'
+
+### Bootstrap
+ADD chef/active-cookbook/opencoral/recipes/bootstrap.rb                 /chef/vendor/cookbooks/opencoral/recipes/bootstrap.rb
+RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::bootstrap'
+
 # ### Deploy Source
 # ADD chef/active-cookbook/opencoral/recipes/deploy_source.rb                 /chef/vendor/cookbooks/opencoral/recipes/deploy_source.rb
 # RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 # RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::deploy_source'
 # 
-# ### Configure DNSMASQ
-# ADD  chef/active-cookbook/opencoral/recipes/dnsmasq.rb                   /chef/vendor/cookbooks/opencoral/recipes/dnsmasq.rb
-# ADD  chef/active-cookbook/opencoral/files/default/01hosts                   /chef/vendor/cookbooks/opencoral/files/default/01hosts
-# RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
-# RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::dnsmasq'
 # 
 # ### Install psql
 # ADD  chef/active-cookbook/opencoral/recipes/add_sql_client.rb		/chef/vendor/cookbooks/opencoral/recipes/add_sql_client.rb
