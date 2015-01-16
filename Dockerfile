@@ -79,12 +79,11 @@ ADD chef/active-cookbook/opencoral/recipes/bootstrap.rb                 /chef/ve
 RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::bootstrap'
 
-# ### Deploy Source
-# ADD chef/active-cookbook/opencoral/recipes/deploy_source.rb                 /chef/vendor/cookbooks/opencoral/recipes/deploy_source.rb
-# RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
-# RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::deploy_source'
-# 
-# 
+# ### Set Locale
+ADD  chef/active-cookbook/opencoral/recipes/set_locale.rb		/chef/vendor/cookbooks/opencoral/recipes/set_locale.rb
+RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::set_locale'
+
 # ### Install psql
 # ADD  chef/active-cookbook/opencoral/recipes/add_sql_client.rb		/chef/vendor/cookbooks/opencoral/recipes/add_sql_client.rb
 # RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
@@ -103,11 +102,6 @@ RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::bootstrap'
 # RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 # RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::automated_billing'
 # 
-# ### Install psql
-# ADD  chef/active-cookbook/opencoral/recipes/set_locale.rb		/chef/vendor/cookbooks/opencoral/recipes/set_locale.rb
-# RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
-# RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::set_locale'
-
 # SSH
 EXPOSE 22
 

@@ -17,5 +17,5 @@ end
 bash "Create bootstrap user" do
   user "coral"
   cwd "/home/coral/opencoral"
-  code "/usr/local/ant-1.8.2/bin/ant bootstrapUser"
+  code "/usr/local/ant-1.8.2/bin/ant bootstrapUser deploy"
 end
