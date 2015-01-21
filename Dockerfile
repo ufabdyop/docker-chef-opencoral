@@ -1,4 +1,4 @@
-FROM docker.nanofab.utah.edu:5000/chef-opencoral-base:1.0.1
+FROM docker.nanofab.utah.edu:5000/chef-opencoral-base:1.0.4
 
 ADD ./chef/base /chef
 WORKDIR /chef
