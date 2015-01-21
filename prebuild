@@ -1,14 +1,30 @@
 #!/bin/bash
+EXAMPLEDATABAG=$(cat <<EOF
+{
+  "id": "general",
+  "postgres": "postgres",
+  "coraldba": "coraldba",
+  "root": "rootpass-1234",
+  "coral_storepass": "storepass-1234",
+  "coral_keypass": "keypass-1234"
+}
+EOF
+)
 
 #first check if secrets file exists
 if [ ! -f /chef/secret/encrypted_data_bag_secret ]
 then 
 	echo "***************************************************************************"; 
 	echo
-	echo "No encryption key found. Please install the correct one."; 
-	echo "See: https://www.nanofab.utah.edu/sv/index.php?dec=1&cat=Chef&t1=Docker%20Secret";
-	echo "Or run: ./fetch-secret.sh";
+	echo "No encryption key found. Please create one."; 
+	echo "Create using command:";
+	echo "openssl rand -base64 512 | tr -d '\\r\\n' > chef/base/secret/encrypted_data_bag_secret"
+	echo "cd chef/base; knife solo data bag create passwords general --secret-file secret/encrypted_data_bag_secret; cd -"
 	echo
+	echo "Example Contents:"
+	echo "$EXAMPLEDATABAG"
+	echo 
+	echo "More details in chef/base/secret/README.md"
 	echo "***************************************************************************"; 
 	exit 1
 fi
