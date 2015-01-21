@@ -14,8 +14,6 @@ ADD  chef/active-cookbook/opencoral/metadata.rb                      /chef/vendo
 ADD  chef/active-cookbook/opencoral/README.md                        /chef/vendor/cookbooks/opencoral/README.md
 
 ### Opencoral Cookbook Files ###
-ADD  chef/active-cookbook/opencoral/files/default/id_rsa.pub         /chef/vendor/cookbooks/opencoral/files/default/id_rsa.pub
-ADD  chef/active-cookbook/opencoral/files/default/gitlab.crt         /chef/vendor/cookbooks/opencoral/files/default/gitlab.crt
 ADD  chef/active-cookbook/opencoral/files/default/coral-sudoers      /chef/vendor/cookbooks/opencoral/files/default/coral-sudoers
 
 ### Default Stuff with Coral User
