@@ -1,4 +1,4 @@
-FROM docker.nanofab.utah.edu:5000/chef-opencoral-base:1.0.4
+FROM chef-opencoral-base:1.0.5
 
 ADD ./chef/base /chef
 WORKDIR /chef
@@ -68,21 +68,15 @@ RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::dnsmasq'
 ADD chef/active-cookbook/opencoral/recipes/bootstrap.rb                 /chef/vendor/cookbooks/opencoral/recipes/bootstrap.rb
 RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::bootstrap'
+
 # ### Setup CoralAPI server
 # #ADD chef/active-cookbook/opencoral/recipes/config_apiserver.rb         /chef/vendor/cookbooks/opencoral/recipes/config_apiserver.rb
 # #ADD chef/active-cookbook/opencoral/attributes/default.rb         /chef/vendor/cookbooks/opencoral/attributes/default.rb
 # #RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 # #RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::config_apiserver'
-# 
-# ### private key and source for checking out automated billing
-# ADD  chef/active-cookbook/opencoral/recipes/automated_billing.rb          /chef/vendor/cookbooks/opencoral/recipes/automated_billing.rb
-# COPY  chef/active-cookbook/opencoral/files/default/nose-1.3.4-tarball           /chef/vendor/cookbooks/opencoral/files/default/nose-1.3.4-tarball
-# ADD  chef/base/data_bags/passwords/files.json                                        /chef/data_bags/passwords/files.json
-# RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
-# RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::automated_billing'
 
 #CLEANUP
-RUN rm /chef/secret/encrypted_data_bag_secret
+RUN rm -rf /chef/secret
 
 # SSH
 EXPOSE 22
