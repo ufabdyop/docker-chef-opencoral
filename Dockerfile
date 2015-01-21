@@ -4,7 +4,7 @@ ADD ./chef/base /chef
 WORKDIR /chef
 
 ### Check that secret file exists
-ADD prebuild /usr/local/bin/prebuild
+ADD container-files/prebuild /usr/local/bin/prebuild
 RUN chmod +x /usr/local/bin/prebuild
 RUN /usr/local/bin/prebuild
 
@@ -80,7 +80,7 @@ RUN rm -rf /chef/secret
 EXPOSE 22
 
 #Run This File on Startup
-ADD run /usr/local/bin/run
-ADD copy_public_key.sh /usr/local/bin/copy_public_key.sh
+ADD container-files/run /usr/local/bin/run
+ADD container-files/copy_public_key.sh /usr/local/bin/copy_public_key.sh
 RUN chmod +x /usr/local/bin/run
 CMD [ "/usr/local/bin/run" ]
