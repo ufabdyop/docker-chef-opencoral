@@ -81,5 +81,6 @@ EXPOSE 22
 
 #Run This File on Startup
 ADD run /usr/local/bin/run
+ADD copy_public_key.sh /usr/local/bin/copy_public_key.sh
 RUN chmod +x /usr/local/bin/run
 CMD [ "/usr/local/bin/run" ]
