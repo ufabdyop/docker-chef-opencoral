@@ -1,0 +1,47 @@
+--- oldbuild.xml        2015-01-16 18:56:47.000000000 +0000
++++ build.xml   2015-01-21 22:42:34.778711445 +0000
+@@ -493,3 +493,3 @@
+         SELECT '${bootstrap_user}', 'Bootstrap project', CURRENT_DATE, 1
+-        FROM member WHERE NOT EXISTS (SELECT NULL FROM member WHERE name =
++        WHERE NOT EXISTS (SELECT NULL FROM member WHERE name =
+         '${bootstrap_user}' AND active = 1);
+@@ -498,3 +498,3 @@
+         SELECT 'Bootstrap project', 'no charge', 'No discipline',
+-        'Bootstrap account', CURRENT_DATE, 1 FROM project
++        'Bootstrap account', CURRENT_DATE, 1
+         WHERE NOT EXISTS (SELECT NULL FROM project WHERE name =
+@@ -503,3 +503,3 @@
+         INSERT INTO account (name, bdate, active)
+-        SELECT 'Bootstrap account', CURRENT_DATE, 1 FROM account
++        SELECT 'Bootstrap account', CURRENT_DATE, 1
+         WHERE NOT EXISTS (SELECT NULL FROM account WHERE name =
+@@ -509,3 +509,3 @@
+         SELECT '${bootstrap_user}', 'Bootstrap project',
+-        '${bootstrap_user}', CURRENT_DATE, 1 FROM works_on
++        '${bootstrap_user}', CURRENT_DATE, 1
+         WHERE NOT EXISTS (SELECT NULL FROM works_on
+@@ -516,3 +516,3 @@
+         SELECT 'Bootstrap project', 'Bootstrap account',
+-        '${bootstrap_user}', CURRENT_DATE, 1 FROM charges_to
++        '${bootstrap_user}', CURRENT_DATE, 1
+         WHERE NOT EXISTS (SELECT NULL FROM charges_to
+@@ -523,3 +523,3 @@
+         SELECT '${bootstrap_user}', 'coral', '${default_lab}',
+-        '${bootstrap_user}', CURRENT_DATE, 1 FROM lab_role
++        '${bootstrap_user}', CURRENT_DATE, 1
+         WHERE NOT EXISTS (SELECT NULL FROM lab_role
+@@ -530,3 +530,3 @@
+         SELECT '${bootstrap_user}', 'admin', '${default_lab}',
+-        '${bootstrap_user}', CURRENT_DATE, 1 FROM lab_role
++        '${bootstrap_user}', CURRENT_DATE, 1
+         WHERE NOT EXISTS (SELECT NULL FROM lab_role
+@@ -537,3 +537,3 @@
+         SELECT '${bootstrap_user}', 'staff', '${default_lab}',
+-        '${bootstrap_user}', CURRENT_DATE, 1 FROM lab_role
++        '${bootstrap_user}', CURRENT_DATE, 1
+         WHERE NOT EXISTS (SELECT NULL FROM lab_role
+@@ -544,3 +544,3 @@
+         SELECT '${bootstrap_user}', 'inventory', '${default_lab}',
+-        '${bootstrap_user}', CURRENT_DATE, 1 FROM lab_role
++        '${bootstrap_user}', CURRENT_DATE, 1
+         WHERE NOT EXISTS (SELECT NULL FROM lab_role

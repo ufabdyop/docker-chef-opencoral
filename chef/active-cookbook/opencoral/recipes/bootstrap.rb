@@ -14,6 +14,15 @@ execute "BUGFIX" do
   command "perl -i -pe 's/(WHERE master = .Bootstrap project. AND )project( = .Bootstrap account.)/$1slave$2/' /home/coral/opencoral/build.xml"
 end
 
+cookbook_file "/tmp/build.xml.patch" do
+  source "build.xml.patch"
+end
+
+execute "Second BUGFIX" do
+  cwd "/home/coral/opencoral"
+  command "patch -N -p0 < /tmp/build.xml.patch"
+end
+
 bash "Create bootstrap user" do
   user "coral"
   cwd "/home/coral/opencoral"

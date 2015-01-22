@@ -63,6 +63,7 @@ RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::dnsmasq'
 
 ### Bootstrap
+ADD chef/active-cookbook/opencoral/files/default/build.xml.patch                 /chef/vendor/cookbooks/opencoral/files/default/build.xml.patch
 ADD chef/active-cookbook/opencoral/recipes/bootstrap.rb                 /chef/vendor/cookbooks/opencoral/recipes/bootstrap.rb
 RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::bootstrap'

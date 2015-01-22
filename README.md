@@ -36,3 +36,11 @@ docker build -t chef-opencoral-vanilla .
 Initially, I tried running coral on a dev box with 512M of memory which turned out to be too little.  I turned it up to 
 1024 and that worked.
 
+Configuring
+---
+As of version 1.0.6, the container starts with coral running, but no equipment hierarchy defined yet.  You must:
+
+* set a remote password
+* run coral-admin
+* run ant build deployAll
+* run opencoral stop; opencoral start
