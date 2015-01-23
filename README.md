@@ -5,8 +5,8 @@ Uses a base image with all of coral's prerequisites to build a running instance 
 
 Data Bags
 ---
-This docker image is built using chef-solo and using encrypted data bags.  See the README in the
-chef/secret directory for more info.
+This docker image is built using chef-solo with data bags.  Edit the passwords data bag in chef/base/data_bags/passwords/opencoral.json
+before building (template file is included as opencoral.json.template).
 
 Starting Container
 ---
