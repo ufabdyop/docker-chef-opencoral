@@ -1,0 +1,8 @@
+{
+  "id": "opencoral",
+  "postgres_password": "postgres",
+  "coraldba_password": "coraldba",
+  "reader_password": "readerpass",
+  "storepass": "storepass-1234",
+  "keypass": "keypass-1234"
+}

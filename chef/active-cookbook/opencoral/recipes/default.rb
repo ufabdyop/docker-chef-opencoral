@@ -6,16 +6,6 @@
 #
 #
 
-#load passwords
-my_secret = Chef::EncryptedDataBagItem.load_secret("/chef/secret/encrypted_data_bag_secret")
-passwords = Chef::EncryptedDataBagItem.load("passwords", "general", my_secret)
-
-#set root password
-rootpass = passwords['root']
-execute "Set root password" do
-  command "echo 'root:#{rootpass}' | chpasswd"
-end
-
 execute "create coral user" do
   command "useradd -m coral -s /bin/bash"
 end

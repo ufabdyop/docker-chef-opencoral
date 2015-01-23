@@ -5,12 +5,9 @@
 # Copyright 2014, YOUR_COMPANY_NAME
 #
 # All rights reserved - Do Not Redistribute
-my_secret = Chef::EncryptedDataBagItem.load_secret("/chef/secret/encrypted_data_bag_secret")
-passwords = Chef::EncryptedDataBagItem.load("passwords", "general", my_secret)
 
-keypass = passwords['coral_keypass']
-storepass = passwords['coral_storepass']
-
+keypass = data_bag_item('passwords', 'opencoral')['keypass']
+storepass = data_bag_item('passwords', 'opencoral')['storepass']
 orgdname = 'CN=OpenCoral, OU=your_organization, O=your_institution, L=your_city, ST=your_state, C=US'
 
 file "/usr/local/coral/etc/private/.signstore" do

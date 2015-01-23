@@ -5,12 +5,8 @@
 # Copyright 2014, YOUR_COMPANY_NAME
 #
 # All rights reserved - Do Not Redistribute
-# load passwords
-my_secret = Chef::EncryptedDataBagItem.load_secret("/chef/secret/encrypted_data_bag_secret")
-passwords = Chef::EncryptedDataBagItem.load("passwords", "general", my_secret)
-
-dbapass = passwords['coraldba']
-readerpass = passwords['postgres_reader_pass']
+dbapass = data_bag_item('passwords', 'opencoral')['coraldba_password']
+readerpass = data_bag_item('passwords', 'opencoral')['reader_password']
 
 execute "Create coraldba " do
      command "service postgresql start; sleep 5; su postgres -c 'createuser -d -a coraldba'"

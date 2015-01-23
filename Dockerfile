@@ -3,7 +3,7 @@ FROM chef-opencoral-base:1.0.5
 ADD ./chef/base /chef
 WORKDIR /chef
 
-### Check that secret file exists
+### Check that password file exists
 ADD container-files/prebuild /usr/local/bin/prebuild
 RUN chmod +x /usr/local/bin/prebuild
 RUN /usr/local/bin/prebuild
@@ -70,7 +70,7 @@ RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::bootstrap'
 
 # ### Setup CoralAPI server
 # #ADD chef/active-cookbook/opencoral/recipes/config_apiserver.rb         /chef/vendor/cookbooks/opencoral/recipes/config_apiserver.rb
-# #ADD chef/active-cookbook/opencoral/attributes/default.rb         /chef/vendor/cookbooks/opencoral/attributes/default.rb
+# #ADD  chef/active-cookbook/opencoral/attributes/default.rb            /chef/vendor/cookbooks/opencoral/attributes/default.rb
 # #RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 # #RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::config_apiserver'
 

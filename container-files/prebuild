@@ -12,19 +12,13 @@ EOF
 )
 
 #first check if secrets file exists
-if [ ! -f /chef/secret/encrypted_data_bag_secret ]
+if [ ! -f /chef/data_bags/passwords/opencoral.json ]
 then 
 	echo "***************************************************************************"; 
 	echo
-	echo "No encryption key found. Please create one."; 
-	echo "Create using command:";
-	echo "openssl rand -base64 512 | tr -d '\\r\\n' > chef/base/secret/encrypted_data_bag_secret"
-	echo "cd chef/base; knife solo data bag create passwords general --secret-file secret/encrypted_data_bag_secret; cd -"
-	echo
-	echo "Example Contents:"
-	echo "$EXAMPLEDATABAG"
+	echo "No passwords file found. Please create one."; 
+	echo "quickstart: cp chef/base/data_bags/passwords/opencoral.json.template chef/base/data_bags/passwords/opencoral.json"
 	echo 
-	echo "More details in chef/base/secret/README.md"
 	echo "***************************************************************************"; 
 	exit 1
 fi
