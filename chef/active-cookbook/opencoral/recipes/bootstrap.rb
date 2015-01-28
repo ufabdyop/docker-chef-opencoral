@@ -6,7 +6,7 @@ execute "start psql" do
   command "service postgresql start"
 end
 
-execute "ping coraldb" do
+execute "wait for psql on coraldb" do
   command "sleep 4"
 end
 
@@ -20,11 +20,11 @@ end
 
 execute "Second BUGFIX" do
   cwd "/home/coral/opencoral"
-  command "patch -N -p0 < /tmp/build.xml.patch"
+  command "patch -N -p0 < /tmp/build.xml.patch || true"
 end
 
 bash "Create bootstrap user" do
   user "coral"
   cwd "/home/coral/opencoral"
-  code "/usr/local/ant-1.8.2/bin/ant bootstrapUser deploy"
+  code "/usr/local/ant-1.8.2/bin/ant bootstrapUser"
 end
