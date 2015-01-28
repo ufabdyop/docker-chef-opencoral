@@ -8,11 +8,13 @@
 git "Cloning CoralAPI..." do
   repository node['opencoral']['api_repository']
   destination node['opencoral']['api_home']
+  revision node['opencoral']['api_revision']
 end
 
 git "Cloning CoralAPI server..." do
   repository node['opencoral']['apiserver_repository']
   destination node['opencoral']['apiserver_home']
+  revision node['opencoral']['apiserver_revision']
 end
 
 execute "Fix permissions" do
@@ -25,15 +27,15 @@ execute "Build coral api" do
   user "coral"
   environment 'HOME' => '/home/coral'
   cwd node['opencoral']['api_home']
-  command "/usr/local/maven/bin/mvn compile" #package
+  command "/usr/local/maven/bin/mvn -Dmaven.test.skip=true install"
 end
  
-# execute "Build coral apiserver" do
-#   user "coral"
-#   environment 'HOME' => '/home/coral'
-#   cwd node['opencoral']['apiserver_home']
-#   command "mvn compile" #package
-# end
+execute "Build coral apiserver" do
+  user "coral"
+  environment 'HOME' => '/home/coral'
+  cwd node['opencoral']['apiserver_home']
+  command "/usr/local/maven/bin/mvn package" #package
+end
 
 # 
 # runit_config_dir = node['opencoral']['apiserver_home'] + '/runit'
