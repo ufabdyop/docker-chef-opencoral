@@ -22,6 +22,12 @@ bash "Run Start Script to Start Apache/Postgresql" do
 	"
 end
 
+#TEMPORARY FIX FOR BUILD (https://opencoral.mit.edu/phpBB3/viewtopic.php?f=5&t=523&p=3004)
+execute "Patch build file" do
+  user "coral"
+  command "perl -i -pe 's/^\\s+signedjar=/digestalg=\"SHA1\" signedjar=/' /home/coral/opencoral/build.xml"
+end
+
 bash "Build and Deploy All Source Code" do
   user "coral"
   cwd "/home/coral/opencoral"
