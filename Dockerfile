@@ -86,6 +86,11 @@ ADD  chef/active-cookbook/opencoral/attributes/default.rb            /chef/vendo
 RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::config_apiserver'
 
+ADD chef/active-cookbook/opencoral/files/default/unlimited7.zip         /chef/vendor/cookbooks/opencoral/files/default/unlimited7.zip
+ADD chef/active-cookbook/opencoral/recipes/security.rb         /chef/vendor/cookbooks/opencoral/recipes/security.rb
+RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::security'
+
 #CLEANUP
 RUN rm -rf /chef/data_bags/passwords/opencoral.json
 
