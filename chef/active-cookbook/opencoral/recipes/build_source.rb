@@ -23,5 +23,5 @@ end
 bash "Build java files" do
   user "coral"
   cwd "/home/coral/opencoral"
-  code "/usr/local/ant-1.8.2/bin/ant build | tee /tmp/build0.log"
+  code "/usr/bin/ant build | tee /tmp/build0.log"
 end

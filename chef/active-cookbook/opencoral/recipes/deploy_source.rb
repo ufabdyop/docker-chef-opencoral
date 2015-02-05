@@ -25,7 +25,7 @@ end
 bash "Build and Deploy All Source Code" do
   user "coral"
   cwd "/home/coral/opencoral"
-  code "/usr/local/ant-1.8.2/bin/ant build deploy deployAll 2>&1 | tee /tmp/deployAll1.log"
+  code "/usr/bin/ant build deploy deployAll 2>&1 | tee /tmp/deployAll1.log"
 end
 
 bash "Check for files" do
@@ -44,7 +44,7 @@ end
 bash "Deploy All Source Code Again to Capture New Key Pair" do
   user "coral"
   cwd "/home/coral/opencoral"
-  code "/usr/local/ant-1.8.2/bin/ant deployAll 2>&1 | tee /tmp/deployAll2.log"
+  code "/usr/bin/ant deployAll 2>&1 | tee /tmp/deployAll2.log"
 end
 
 bash "Check for files" do
