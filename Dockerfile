@@ -94,6 +94,9 @@ RUN cd /chef; chef-solo -c solo.rb -j node.json -o 'opencoral::security'
 #CLEANUP
 RUN rm -rf /chef/data_bags/passwords/opencoral.json
 
+#ADD EXPORT FEATURE
+ADD container-files/export.sh /export.sh
+
 # SSH
 EXPOSE 22
 
