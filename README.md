@@ -54,7 +54,6 @@ docker run --rm \
   -v /tmp/coralData:/data \
   --dns 127.0.0.1 \
   -e EXPORTDIR=/data \
-  -e CORALSERVER=mycoralservername.local \
-  chef-opencoral-vanilla:1.0.17 \
+  chef-opencoral-vanilla:1.0.18 \
   /export.sh
 ```
