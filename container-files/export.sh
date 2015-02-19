@@ -22,7 +22,7 @@ sleep 5
 
 sudo chown coral $EXPORTDIR
 cd /home/coral/opencoral/
-perl -i -pe 's/coralserver.local/$CORALSERVER/g' config/site1-prod.properties
+perl -i -pe "s/coralserver.local/$CORALSERVER/g" config/site1-prod.properties
 ant build | tee $EXPORTDIR/build.log
 ant deploy | tee $EXPORTDIR/deploy.log
 ant deployAll | tee $EXPORTDIR/deployall.log

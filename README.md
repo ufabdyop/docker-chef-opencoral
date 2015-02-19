@@ -44,3 +44,17 @@ As of version 1.0.6, the container starts with coral running, but no equipment h
 * run coral-admin
 * run ant build deployAll
 * run opencoral stop; opencoral start
+
+Exporting Build Artifacts
+---
+After coral is built, you can export the java binaries and the database dump file to run on a slimmed down server.
+
+```
+docker run --rm \
+  -v /tmp/coralData:/data \
+  --dns 127.0.0.1 \
+  -e EXPORTDIR=/data \
+  -e CORALSERVER=mycoralservername.local \
+  chef-opencoral-vanilla:1.0.17 \
+  /export.sh
+```
