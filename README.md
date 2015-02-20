@@ -57,3 +57,26 @@ docker run --rm \
   chef-opencoral-vanilla:1.0.18 \
   /export.sh
 ```
+
+Running the container to allow remote access through JNLP
+---
+
+These commands will run coral and forward all the corba ports
+sudo service ufw stop
+docker rm -f coral
+docker run --name coral -d \
+                -p 2233:22 \
+                -p 80:80 \
+                -p 50000:50000 \
+                -p 50001:50001 \
+                -p 50002:50002 \
+                -p 50003:50003 \
+                -p 50004:50004 \
+                -p 50005:50005 \
+                -p 50006:50006 \
+                -p 50007:50007 \
+                -p 50008:50008 \
+                -p 50009:50009 \
+                -p 50010:50010 \
+                -p 50011:50011 \
+                -v /tmp/coral-container-keys:/coral_public_key  \
