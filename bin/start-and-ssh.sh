@@ -5,7 +5,7 @@ KEYDIR=/tmp/coral-container-keys-$RANDOMSUFFIX
 mkdir -p $KEYDIR
 ssh-keygen -f $KEYDIR/id_rsa -N ''
 
-docker rm -f coral-vanilla || true 2> /dev/null 
+docker rm -f coral-vanilla 2> /dev/null 
 docker run -d --name coral-vanilla \
                 -p 2233:22 \
                 -p 80:80 \
@@ -22,6 +22,7 @@ docker run -d --name coral-vanilla \
                 -p 50010:50010 \
                 -p 50011:50011 \
                 -v $KEYDIR:/coral_public_key  \
-		chef-opencoral-vanilla
+		ufabdyop/chef-opencoral-vanilla
 
+echo Run this command after services finish starting:
 echo ssh -Y -i $KEYDIR/id_rsa -p 2233 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no coral@localhost
