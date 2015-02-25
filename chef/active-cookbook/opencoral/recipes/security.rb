@@ -16,14 +16,14 @@ bash "unzip unlimited" do
 	cd /tmp; 
 	unzip unlimited7.zip; 
 	cd UnlimitedJCEPolicy/;
-	cp *jar /usr/lib/jvm/java-7-oracle-amd64/jre/lib/security/
+	cp *jar /usr/lib/jvm/default-java/jre/lib/security/
 	rm -rf /tmp/unlimited7.zip /tmp/UnlimitedJCEPolicy
   EOF
 end
 
 bash "add provider" do
   code <<-EOF 
-	echo 'security.provider.10=org.bouncycastle.jce.provider.BouncyCastleProvider' >> /usr/lib/jvm/java-7-oracle-amd64/jre/lib/security/java.security
-	cp /home/coral/opencoral/ext/jce/bcprov-jdk15on-150.jar /usr/lib/jvm/java-7-oracle-amd64/jre/lib/ext/
+	echo 'security.provider.11=org.bouncycastle.jce.provider.BouncyCastleProvider' >> /usr/lib/jvm/default-java/jre/lib/security/java.security
+	cp /home/coral/opencoral/ext/jce/bcprov-jdk15on-150.jar /usr/lib/jvm/default-java/jre/lib/ext/
   EOF
 end

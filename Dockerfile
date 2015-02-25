@@ -1,4 +1,4 @@
-FROM chef-opencoral-base:1.0.8
+FROM chef-opencoral-base:1.1.0
 
 ADD ./chef/base /chef
 WORKDIR /chef

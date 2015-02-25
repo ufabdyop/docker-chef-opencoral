@@ -80,3 +80,4 @@ docker run --name coral -d \
                 -p 50010:50010 \
                 -p 50011:50011 \
                 -v /tmp/coral-container-keys:/coral_public_key  \
+		chef-opencoral-vanilla
