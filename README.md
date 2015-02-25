@@ -62,7 +62,7 @@ Running the container to allow remote access through JNLP
 ---
 
 These commands will run coral and forward all the corba ports
-sudo service ufw stop
+```
 docker rm -f coral
 docker run --name coral -d \
                 -p 2233:22 \
@@ -81,3 +81,4 @@ docker run --name coral -d \
                 -p 50011:50011 \
                 -v /tmp/coral-container-keys:/coral_public_key  \
 		chef-opencoral-vanilla
+```
