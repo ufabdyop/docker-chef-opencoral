@@ -21,7 +21,7 @@ docker run -d --name coral-vanilla \
                 -p 50009:50009 \
                 -p 50010:50010 \
                 -p 50011:50011 \
-                -v /tmp/coral-container-keys:/coral_public_key  \
+                -v $KEYDIR:/coral_public_key  \
 		chef-opencoral-vanilla
 
-echo ssh -Y -i /tmp/coral-container-keys/id_rsa -p 2233 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no coral@localhost
+echo ssh -Y -i $KEYDIR/id_rsa -p 2233 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no coral@localhost
