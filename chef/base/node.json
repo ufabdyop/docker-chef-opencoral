@@ -1,7 +1,7 @@
 {
   "postgresql": {
     "password": {
-       "postgres": "myUltrSecurEpass"
+       "postgres": "overrideThisPassInRecipe"
     },
     "config": {
       "ssl_cert_file": "/etc/ssl/certs/postgresql.pem",
@@ -11,10 +11,17 @@
   },
   "run_list": [
     "recipe[opencoral::default]",
-    "recipe[opencoral::ssh]",
     "recipe[opencoral::source]",
+    "recipe[opencoral::database_config]",
+    "recipe[opencoral::ssh]",
+    "recipe[opencoral::keystore]",
+    "recipe[opencoral::ant_configure]",
     "recipe[opencoral::build_source]",
+    "recipe[opencoral::maven]",
+    "recipe[opencoral::dnsmasq]",
+    "recipe[opencoral::bootstrap]",
     "recipe[opencoral::deploy_source]",
-    "recipe[opencoral::config_apiserver]"
+    "recipe[opencoral::config_apiserver]",
+    "recipe[opencoral::security]"
   ]
 }
