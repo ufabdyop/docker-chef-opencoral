@@ -9,12 +9,14 @@ else
 	echo "exporting to $EXPORTDIR"
 fi
 
-run &
-sleep 5
+service dnsmasq start
+service postgresql start
 
 sudo chown coral $EXPORTDIR
 
 #Dump DB
+sudo touch $EXPORTDIR/dump.sql
+sudo chmod 777 $EXPORTDIR/dump.sql
 sudo su postgres -c "pg_dumpall > $EXPORTDIR/dump.sql"
 
 #Dump files:
