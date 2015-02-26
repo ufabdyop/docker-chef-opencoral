@@ -53,6 +53,17 @@ bash "Deploy All Source Code Again to Capture New Key Pair" do
   code "/usr/bin/ant deployAll 2>&1 | tee /tmp/deployAll2.log"
 end
 
+bash "build and deploy until coralkey exists" do
+  user "coral"
+  code "
+while [ ! $(unzip --ql /var/www/html/coral/lib/config.jar | grep Coral.key ) ] 
+do
+	cd /home/coral/opencoral
+	/usr/bin/ant build deployAll 2>&1 | tee /tmp/deployAll2.log
+done
+  "
+end
+
 bash "Check for files" do
   user "coral"
   cwd "/home/coral"
