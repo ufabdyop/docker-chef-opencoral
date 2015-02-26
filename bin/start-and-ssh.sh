@@ -24,5 +24,5 @@ docker run -d --name coral-vanilla \
                 -v $KEYDIR:/coral_public_key  \
 		ufabdyop/chef-opencoral-vanilla
 
-echo Run this command after services finish starting (give it about 5 seconds or so):
+echo 'Run this command after services finish starting (give it about 5 seconds or so):'
 echo ssh -Y -i $KEYDIR/id_rsa -p 2233 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no coral@localhost
