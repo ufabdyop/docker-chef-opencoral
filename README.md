@@ -12,7 +12,7 @@ Starting Container
 ---
 Assuming the postgresql container for coral is running as coraldb:
 
-    docker run -d --link coraldb:coraldb --dns 127.0.0.1  -P --name coral chef-opencoral-vanilla
+    docker run -d --link coraldb:coraldb --dns 127.0.0.1  -P --name coral ufabdyop/chef-opencoral-vanilla
 
 You may set up key pair authentication like so:
 
@@ -23,7 +23,7 @@ First generate a key:
 
 Then start container and use volume sharing to allow authentication using that key (port forwarding 2233 to 22)
 
-    docker run --name coral -d -p 2233:22 -v /tmp/coral-container-keys:/coral_public_key chef-opencoral-vanilla
+    docker run --name coral -d -p 2233:22 -v /tmp/coral-container-keys:/coral_public_key ufabdyop/chef-opencoral-vanilla
 
 Then ssh into container
 
@@ -31,7 +31,7 @@ Then ssh into container
 
 Building
 ---
-docker build -t chef-opencoral-vanilla .
+docker build -t ufabdyop/chef-opencoral-vanilla .
 
 Initially, I tried running coral on a dev box with 512M of memory which turned out to be too little.  I turned it up to 
 1024 and that worked.
@@ -54,7 +54,7 @@ docker run --rm \
   -v /tmp/coralData:/data \
   --dns 127.0.0.1 \
   -e EXPORTDIR=/data \
-  chef-opencoral-vanilla:1.0.18 \
+  ufabdyop/chef-opencoral-vanilla:1.1.1 \
   /export.sh
 ```
 
@@ -80,5 +80,5 @@ docker run --name coral -d \
                 -p 50010:50010 \
                 -p 50011:50011 \
                 -v /tmp/coral-container-keys:/coral_public_key  \
-		chef-opencoral-vanilla
+		ufabdyop/chef-opencoral-vanilla
 ```

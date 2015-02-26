@@ -1,0 +1,16 @@
+<xml>
+  <lab name="lab1" display="My Lab Name">
+    <area name="Area 1">
+      <machine name="Tool 1"/>
+    </area>
+    <area name="Area 2">
+      <machine name="Tool 2"/>
+      <machine name="Tool 3"/>
+    </area>
+  </lab>
+  <lab name="lab2" display="My Second Lab Name">
+    <area name="Area 3">
+      <machine name="Tool 4"/>
+    </area>
+  </lab>
+</xml>

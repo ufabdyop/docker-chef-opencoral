@@ -1,0 +1,11 @@
+<xml>
+  <lab name="lab1" display="My Lab Name">
+    <area name="Supply Area 1">
+      <supply name="Supply 1"/>
+      <supply name="Supply 2"/>
+    </area>
+    <area name="Supply Area 2">
+      <supply name="Supply 3"/>
+    </area>
+  </lab>
+</xml>

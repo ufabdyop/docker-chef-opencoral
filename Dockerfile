@@ -1,4 +1,4 @@
-FROM chef-opencoral-base:1.1.0
+FROM ufabdyop/chef-opencoral-base:1.1.0
 
 ADD ./chef/base /chef
 WORKDIR /chef
@@ -9,7 +9,7 @@ RUN chmod +x /usr/local/bin/prebuild
 RUN /usr/local/bin/prebuild
 
 ### Opencoral Cookbook Files ###
-ADD  chef/active-cookbook/opencoral                     	     /chef/vendor/cookbooks/opencoral
+ADD  chef/active-cookbook/opencoral                          /chef/vendor/cookbooks/opencoral
 
 ### Run chef-solo (using librarian for dependencies)
 RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install

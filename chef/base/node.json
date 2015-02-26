@@ -16,6 +16,8 @@
     "recipe[opencoral::ssh]",
     "recipe[opencoral::keystore]",
     "recipe[opencoral::ant_configure]",
+    "recipe[opencoral::equipment]",
+    "recipe[opencoral::supply]",
     "recipe[opencoral::build_source]",
     "recipe[opencoral::maven]",
     "recipe[opencoral::dnsmasq]",
