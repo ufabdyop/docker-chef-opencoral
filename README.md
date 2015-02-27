@@ -2,6 +2,7 @@ Docker OpenCoral Image
 ===
 
 Uses a base image with all of coral's prerequisites to build a running instance of coral.  It can be linked to a postgresql image with coral's DB structure and data.
+But it also includes postgresql so it can be started as a single, self-contained running instance of coral
 
 Data Bags
 ---
@@ -10,9 +11,20 @@ before building (template file is included as opencoral.json.template).
 
 Starting Container
 ---
-Assuming the postgresql container for coral is running as coraldb:
+You can start the container without an external postgres server using the helper startup script in bin/start-and-ssh.sh
+```
+docker pull ufabdyop/chef-opencoral-vanilla
+./bin/start-and-ssh.sh
+```
 
-    docker run -d --link coraldb:coraldb --dns 127.0.0.1  -P --name coral ufabdyop/chef-opencoral-vanilla
+Starting with another container as postgresql database host (assuming the postgresql container for coral is running as coraldb):
+
+```
+docker run -d --link coraldb:coraldb --dns 127.0.0.1  -P --name coral ufabdyop/chef-opencoral-vanilla
+```
+
+Connecting to Running Container with SSH
+---
 
 You may set up key pair authentication like so:
 
@@ -29,21 +41,21 @@ Then ssh into container
 
     ssh -Y -i /tmp/coral-container-keys/id_rsa -p 2233 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no coral@localhost
 
+This is all done for you by the startup script (./bin/start-and-ssh.sh)
+
 Building
 ---
 docker build -t ufabdyop/chef-opencoral-vanilla .
 
 Initially, I tried running coral on a dev box with 512M of memory which turned out to be too little.  I turned it up to 
-1024 and that worked.
+3GB and that worked.
 
 Configuring
 ---
-As of version 1.0.6, the container starts with coral running, but no equipment hierarchy defined yet.  You must:
-
-* set a remote password
-* run coral-admin
-* run ant build deployAll
-* run opencoral stop; opencoral start
+The container starts with an example lab and equipment hierarchy set up in coral.  You can start the container, ssh into
+it (with X packet forwarding) and start the ssh coral client.  There is also a running instance of coralapiserver (github.com/ufabdyop/coralapiserver).
+You may want to customize the coral instance, using the standard coral config tools (ant configure, coral-admin, etc.).
+See opencoral.mit.edu for details.
 
 Exporting Build Artifacts
 ---
@@ -56,6 +68,11 @@ docker run --rm \
   -e EXPORTDIR=/data \
   ufabdyop/chef-opencoral-vanilla:1.1.1 \
   /export.sh
+```
+
+Or use the helper script:
+```
+./bin/start-and-export.sh
 ```
 
 Running the container to allow remote access through JNLP
