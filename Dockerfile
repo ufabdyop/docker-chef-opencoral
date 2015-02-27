@@ -27,22 +27,28 @@ ADD container-files/export.sh /export.sh
 # RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
 # RUN cd /chef; chef-solo -c solo.rb -j node.json -o opencoral::start_coralapiserver
 
-# SSH
-EXPOSE 22      #SSH
-EXPOSE 80      #HTTP (Serves coral.jnlp, IOR for CORBA, and coral jar files)
-EXPOSE 8080    #HTTP (Serves coralapiserver endpoint)
-EXPOSE 50000   #CORBA PORT
-EXPOSE 50001   #CORBA PORT
-EXPOSE 50002   #CORBA PORT
-EXPOSE 50003   #CORBA PORT
-EXPOSE 50004   #CORBA PORT
-EXPOSE 50005   #CORBA PORT
-EXPOSE 50006   #CORBA PORT
-EXPOSE 50007   #CORBA PORT
-EXPOSE 50008   #CORBA PORT
-EXPOSE 50009   #CORBA PORT
-EXPOSE 50010   #CORBA PORT
-EXPOSE 50011   #CORBA PORT
+#SSH
+EXPOSE 22      
+
+#HTTP (Serves coral.jnlp, IOR for CORBA, and coral jar files)
+EXPOSE 80      
+
+#HTTP (Serves coralapiserver endpoint)
+EXPOSE 8080    
+
+#CORBA PORTS
+EXPOSE 50000   
+EXPOSE 50001   
+EXPOSE 50002   
+EXPOSE 50003   
+EXPOSE 50004   
+EXPOSE 50005   
+EXPOSE 50006   
+EXPOSE 50007   
+EXPOSE 50008   
+EXPOSE 50009   
+EXPOSE 50010   
+EXPOSE 50011   
 
 #Run This File on Startup
 CMD [ "/usr/local/bin/run" ]
