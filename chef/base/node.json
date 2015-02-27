@@ -24,7 +24,8 @@
     "recipe[opencoral::bootstrap]",
     "recipe[opencoral::deploy_source]",
     "recipe[opencoral::config_apiserver]",
-    "recipe[opencoral::start_apiserver]",
+    "recipe[opencoral::set_coral_remote_password]",
+    "recipe[opencoral::start_coralapiserver]",
     "recipe[opencoral::security]"
   ]
 }
