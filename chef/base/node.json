@@ -24,6 +24,7 @@
     "recipe[opencoral::bootstrap]",
     "recipe[opencoral::deploy_source]",
     "recipe[opencoral::config_apiserver]",
+    "recipe[opencoral::start_apiserver]",
     "recipe[opencoral::security]"
   ]
 }

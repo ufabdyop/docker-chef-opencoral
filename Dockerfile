@@ -21,6 +21,12 @@ RUN rm -rf /chef/data_bags/passwords/opencoral.json
 #ADD EXPORT FEATURE
 ADD container-files/export.sh /export.sh
 
+### Merge new recipes ###
+# ADD  chef/active-cookbook/to-merge                            /chef/vendor/cookbooks/to-merge
+# RUN  rsync -rv /chef/vendor/cookbooks/to-merge/opencoral/ /chef/vendor/cookbooks/opencoral/
+# RUN cd /chef; /opt/chef/embedded/bin/librarian-chef install
+# RUN cd /chef; chef-solo -c solo.rb -j node.json -o opencoral::start_coralapiserver
+
 # SSH
 EXPOSE 22
 
