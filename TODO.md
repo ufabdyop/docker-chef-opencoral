@@ -8,5 +8,7 @@ TODO
 
 * runit
 
+  cd /home/coral/coralapiserver/
+  git pull origin master
   sudo ln -s /home/coral/coralapiserver/runit /etc/service/coralapiserver
   sudo /usr/sbin/runsvdir-start
