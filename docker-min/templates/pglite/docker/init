@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+DATADIR=/datashare
+
+chown default $DATADIR
+
+echo "DATADIR is $DATADIR"
+
+mkdir -p /usr/share/zoneinfo
+
+if [ -e $DATADIR/pg_xlog ]; then
+	echo "DB files already exist. Skipping initdb"
+else
+	echo "Running initdb"
+	su default -s /usr/bin/initdb -- --pgdata=$DATADIR --username=postgres --auth=trust
+	echo "Setting up pg_hba.conf"
+	echo > $DATADIR/pg_hba.conf
+	echo host all all 0.0.0.0 0.0.0.0 trust >> $DATADIR/pg_hba.conf
+fi
+
+echo "Running postgres"
+exec su default -s /usr/bin/postgres -- -D $DATADIR -c 'listen_addresses=*'
