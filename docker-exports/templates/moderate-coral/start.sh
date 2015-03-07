@@ -6,7 +6,7 @@ DOCKERHOSTIP=$(ip addr show docker0 | perl -ne '/inet (.*)\// && print $1')
 
 docker build -t moderate-coral .
 docker rm -f moderate-coral-container 2> /dev/null || true
-docker run --name moderate-coral-container -d \
+CMD="docker run --name moderate-coral-container -d \
 	-v $LOGDIR:/var/log/coral \
 	--add-host coraldb:$DOCKERHOSTIP \
 	-e CORALSERVER=coralserver.local \
@@ -23,4 +23,6 @@ docker run --name moderate-coral-container -d \
 	-p 50010:50010 \
 	-p 50011:50011 \
 	-p 80:80 \
-	moderate-coral 
+	moderate-coral"
+echo "Running $CMD"
+$CMD

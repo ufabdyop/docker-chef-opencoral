@@ -23,8 +23,12 @@ sudo su postgres -c "pg_dumpall > $EXPORTDIR/dump.sql"
 sudo mkdir -p $EXPORTDIR/usr/local
 sudo chown coral $EXPORTDIR/usr/local
 rsync -rvz /usr/local/coral/ $EXPORTDIR/usr/local/coral/
+
 sudo mkdir -p $EXPORTDIR/var/www/html
 sudo chown coral $EXPORTDIR/var/www/html
 rsync -rvz /var/www/html/coral/ $EXPORTDIR/var/www/html/coral/
-sudo chown coral $EXPORTDIR/var/www/html
-rsync -rvz /var/www/html/coral/ $EXPORTDIR/var/www/html/coral/
+
+cd /home/coral/opencoral && ant cleanAll
+sudo mkdir -p $EXPORTDIR/home/coral/opencoral
+sudo chown coral $EXPORTDIR/home/coral/opencoral
+rsync -rvz /home/coral/opencoral/ $EXPORTDIR/home/coral/opencoral/
