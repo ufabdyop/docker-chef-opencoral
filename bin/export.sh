@@ -34,6 +34,8 @@ mkdir -p $EXPORTBASE/minimal-coral/data
 sudo chmod -R 777 $EXPORTDIR
 mv $EXPORTDIR/usr $EXPORTBASE/minimal-coral/data
 mv $EXPORTDIR/var $EXPORTBASE/minimal-coral/data
+cp -r $EXPORTBASE/minimal-coral/data $EXPORTBASE/moderate-coral/
 mv $EXPORTBASE/files/dump.sql $EXPORTBASE/pglite/files
 sudo chmod -R 755 $EXPORTBASE
-echo Exported to $EXPORTBASE
+mv $EXPORTBASE /tmp
+echo Exported to /tmp/out-$TIMESTAMP-$RANDOMSUFFIX
