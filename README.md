@@ -2,7 +2,7 @@ Docker OpenCoral Image
 ===
 
 Uses a base image with all of coral's prerequisites to build a running instance of coral.  It can be linked to a postgresql image with coral's DB structure and data.
-But it also includes postgresql so it can be started as a single, self-contained running instance of coral
+But it also includes postgresql so it can be started as a single, self-contained running instance of coral.
 
 Data Bags
 ---
@@ -47,7 +47,7 @@ Building
 ---
 docker build -t ufabdyop/chef-opencoral-vanilla .
 
-Initially, I tried running coral on a dev box with 512M of memory which turned out to be too little.  I turned it up to 
+Initially, I tried running coral on a dev box with 512M of memory which turned out to be too little.  I turned it up to
 3GB and that worked.
 
 Configuring
@@ -61,24 +61,15 @@ Exporting Build Artifacts
 ---
 After coral is built, you can export the java binaries and the database dump file to run on a slimmed down server.
 
+Use the helper script:
 ```
-docker run --rm \
-  -v /tmp/coralData:/data \
-  --dns 127.0.0.1 \
-  -e EXPORTDIR=/data \
-  ufabdyop/chef-opencoral-vanilla:1.1.1 \
-  /export.sh
-```
-
-Or use the helper script:
-```
-./bin/start-and-export.sh
+./bin/export.sh
 ```
 
 Running the container to allow remote access through JNLP
 ---
 
-These commands will run coral and forward all the corba ports
+These commands will run coral and forward all the corba ports (or just use ./bin/start-and-ssh.sh)
 ```
 docker rm -f coral
 docker run --name coral -d \
@@ -97,5 +88,16 @@ docker run --name coral -d \
                 -p 50010:50010 \
                 -p 50011:50011 \
                 -v /tmp/coral-container-keys:/coral_public_key  \
-		ufabdyop/chef-opencoral-vanilla
+                ufabdyop/chef-opencoral-vanilla
 ```
+
+Directory Structure
+---
+
+* bin:              contains helper scripts to be run on the host (outside of docker container)
+* config            contains the chef provisioning recipes and config files
+* container-files   contains files that are to be placed into the container
+* docker-exports    contains templates to be used for exporting the coral build artifacts into slimmer containers
+* notes             more notes on this project
+
+
