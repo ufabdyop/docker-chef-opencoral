@@ -18,28 +18,12 @@ RUN rm -rf /chef/data_bags/passwords/opencoral.json
 #ADD EXPORT FEATURE
 ADD container-files/export.sh /export.sh
 
-#SSH
-EXPOSE 22
-
-#HTTP (Serves coral.jnlp, IOR for CORBA, and coral jar files)
-EXPOSE 80
-
-#HTTP (Serves coralapiserver endpoint)
-EXPOSE 8080
-
-#CORBA PORTS
-EXPOSE 50000
-EXPOSE 50001
-EXPOSE 50002
-EXPOSE 50003
-EXPOSE 50004
-EXPOSE 50005
-EXPOSE 50006
-EXPOSE 50007
-EXPOSE 50008
-EXPOSE 50009
-EXPOSE 50010
-EXPOSE 50011
+#EXPOSED PORTS ARE:
+#22:   SSH 
+#80:   HTTP (Serves coral.jnlp, IOR for CORBA, and coral jar files)
+#8080: HTTP (Serves coralapiserver endpoint)
+#50000 to 50011 CORBA PORTS
+EXPOSE 22 80 8080 50000 50001 50002 50003 50004 50005 50006 50007 50008 50009 50010 50011
 
 #Run This File on Startup
 CMD [ "/usr/local/bin/run" ]
