@@ -1,4 +1,4 @@
-FROM ufabdyop/chef-opencoral-base:1.1.0
+FROM ufabdyop/chef-opencoral-base:1.1.2
 
 ADD ./config/chef /chef
 WORKDIR /chef

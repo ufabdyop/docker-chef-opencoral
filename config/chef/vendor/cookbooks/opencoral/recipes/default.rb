@@ -6,12 +6,16 @@
 #
 #
 
-execute "create coral user" do
-  command "useradd -m coral -s /bin/bash"
-end
 
 group "opencoral" do
   members ['coral']
+end
+
+directory "/home/coral" do
+  owner "coral"
+  group "opencoral"
+  mode 00700
+  action :create
 end
 
 directory "/var/www/html/coral" do
