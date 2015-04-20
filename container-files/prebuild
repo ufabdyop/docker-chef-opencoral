@@ -17,7 +17,7 @@ then
 	echo "***************************************************************************"; 
 	echo
 	echo "No passwords file found. Please create one."; 
-	echo "quickstart: cp chef/base/data_bags/passwords/opencoral.json.template chef/base/data_bags/passwords/opencoral.json"
+	echo "quickstart: cp config/chef/data_bags/passwords/opencoral.json.template config/chef/data_bags/passwords/opencoral.json"
 	echo 
 	echo "***************************************************************************"; 
 	exit 1
