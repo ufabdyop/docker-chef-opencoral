@@ -5,6 +5,16 @@ execute "Update Coral API" do
   command "git pull origin master"
 end
 
+bash "Run Start Script to Start OpenCoral" do
+  user "coral"
+  cwd "/home/coral"
+  code "
+	rm /usr/local/coral/etc/pid/*pid
+	sudo /usr/local/bin/run 2>&1 | tee /tmp/run0.log &
+	sleep 10
+	"
+end
+
 coralpass = data_bag_item('passwords', 'opencoral')['coral_user_password']
 if (coralpass) then
 	execute "Set coral password" do
