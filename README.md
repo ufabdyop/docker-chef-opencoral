@@ -6,7 +6,7 @@ But it also includes postgresql so it can be started as a single, self-contained
 
 Data Bags
 ---
-This docker image is built using chef-solo with data bags.  Edit the passwords data bag in chef/base/data_bags/passwords/opencoral.json
+This docker image is built using chef-solo with data bags.  Edit the passwords data bag in config/chef/data_bags/passwords/opencoral.json
 before building (template file is included as opencoral.json.template).
 
 Starting Container
